@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "My Honours Project: AI On-board! Efficient AI for Space"
+date:   2023-10-27 09:00:00 +1030
+categories: honours machine_learning
+---
+# Welcome!
+Hi, I'm Emily. My honours project looked at how AI can be used in resource-limited devices for space applications, like on a satellite. For this investigation I examined the task of object detection to detect and avoid collisions.
+
+![Top: PTQ MobileDet, Mid: QAT MobileDet, Bot: SpaghettiNet][image_link]
+
+# My Project
+Modern satellites (small sats, CubeSats) can't support conventional machine-learning enabling hardware, such as a general-purpose GPU. Instead, we need to use specially designed, compact hardware acclerators like the Google Edge TPU.
+
+I used Google's Coral [Dev Board Mini][dev_board_mini_link] as my test platform; it is a single-board computer with a Google Edge TPU built-in. The Edge TPU is a coprocessor performing at 0.5 watts for each trillion-operations-per-second (TOPS). However, only certain operations are supported by the Edge TPU, and models must be 8-bit quantised and then specifially compiled to take advantage of the accelerated inferencing.
+
+The focus of my project was how different quantisation methods effected model performance, such as prediction accuracy, detection times, file size, and more. Through this, we find the best practice for using each quantisation method.
+
+# My Paper
+I wrote a paper for the Internation Conference for Robotic Automation 2024 (ICRA 2024) about this project (with help from Yasir Latif and Tat-Jun Chin from The University of Adelaide). You can find it [here][paper_link].
+
+# Resources
+- Here are my [notes][setup_notes] for setting up my development enviornment. 
+    - I had to use TensorFlow 1.15 instead of TensorFlow 2+ because the object detection library has not been ported to version 2+
+    - TF1.15 has various issues that needs to be fixed, a significant one being a patch to enable fine-tuning on pre-trained models; you can find that in the setup notes as well.
+- This [repository][project_repository] holds the (useful) parts of my work; see the readme for further details.
+    - Training was completed on a NVIDIA RTX 2060 on a high-performance laptop
+
+
+
+[dev_board_mini_link]: https://coral.ai/products/dev-board-mini/
+[setup_notes]: https://gist.github.com/Jiarong-Zhang/6fc37d3d7af6dabbf17c57c8c861e779
+[paper_link]: /assets/icra2024_AI_on_Edge.pdf
+[image_link]: /assets/spaghettinet_2.png
+[project_repository]: https://github.com/Jiarong-Zhang/satellite_detection
+
